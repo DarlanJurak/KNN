@@ -11,7 +11,7 @@ int main() {
     vector<Sample *> samples;   // Data structure to store samples.
     string user_input;          // Variable to interact with user.
     vector<float> attributes_float;  // Intermediary attributes vector.
-    vector<std::string> attributes_string;
+    vector<std::string> attributes_string; // Used in the get line split.
 
     // User interaction. Asks for Samples attributes.
     cout << "Please, insert the training base as follow: \n"
@@ -44,7 +44,7 @@ int main() {
         getline(cin, user_input);   // Get user input (new attributes set).
     }
 
-    int count = 0;
+    int count = 0;  // Counter to help user. (Helps to see the ordered list of samples).
     for (std::vector<Sample *>::iterator it = samples.begin(); it != samples.end(); ++it){
 
         std::cout << "Sample " <<  count << ": ";
@@ -52,6 +52,7 @@ int main() {
         (*it)->showAttributes();
 
     }
+
 
 
     return 0;
