@@ -11,8 +11,9 @@
 
 Sample::Sample(){}
 
-Sample::Sample(std::vector<float> v){
+Sample::Sample(int c, std::vector<float> v){
 
+    category = c;
     attributes = v;
 
 }

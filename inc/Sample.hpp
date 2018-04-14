@@ -14,12 +14,14 @@
 class Sample {
 private:
 
+    int category;
     std::vector<float> attributes;
 
 public:
 
     Sample();
-    Sample(std::vector<float>);
+    Sample(int, std::vector<float>);
+    int getCategory(){return category;};
     void showAttributes();
     ~Sample();
 
