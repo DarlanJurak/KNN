@@ -41,9 +41,9 @@ int main() {
         });
 
         // Creates new Sample instance with class and attributes.
-        int category = (int)*(instance_input_float.begin());        // Gets class information
-        instance_input_float.erase(instance_input_float.begin());   // Removes class for vector reuse
-        samples.push_back(new Sample(category, instance_input_float));  // Creates new sample
+        int category = (int)*(instance_input_float.begin());        // Gets class information.
+        instance_input_float.erase(instance_input_float.begin());   // Removes class for vector reuse.
+        samples.push_back(new Sample(category, instance_input_float));  // Creates new sample.
 
         getline(cin, user_input);   // Get user input (new attributes set).
     }
@@ -67,7 +67,7 @@ int main() {
         << "Example:   \n"
         << "2 3.6      \n" << endl;
 
-    getline(cin, user_input);   // Get user input. (Idealy the new object's attributes)
+    getline(cin, user_input);   // Get user input. (Idealy the new object's attributes).
 
     // Splits input string by <space>.
     boost::split(instance_input_string, user_input, [](char c){return c == ' ';});

@@ -16,6 +16,7 @@ private:
 
     int category;
     std::vector<float> attributes;
+    float similarity;       // Similarity (proximity) between this sample and the new instance to be classified.
 
 public:
 
@@ -23,6 +24,7 @@ public:
     Sample(int, std::vector<float>);
     int getCategory(){return category;};
     void showAttributes();
+    void calculateSimilarityByEuclidianDistance(std::vector<float>);
     ~Sample();
 
 protected:
