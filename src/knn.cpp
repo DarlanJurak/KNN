@@ -6,17 +6,32 @@
 
 using namespace std;
 
-struct vote{
+struct Vote{
 
     int category = -1;
     int amount = 0;
 
 };
 
-// used to ordenated the samples vector by dissimilarity
-bool myfunction (Instance* inst0, Instance* inst1){
+// Used to ordenated the samples vector by dissimilarity. (Ascend)
+bool lowDissimilarity (Instance* inst0, Instance* inst1){
 
     return (inst0->getDissimilarity() < inst1->getDissimilarity());
+
+}
+
+// Comparison between a vote category and a sample category
+bool categoryComparison(Vote v, int cat)
+{
+	if(v.category == cat)
+		return true;
+	else
+		return false;
+}
+
+void showVote (Vote v) {
+
+  std::cout << "Category: " << v.category << ". Votes: " << v.amount << endl;
 
 }
 
@@ -28,10 +43,11 @@ int main() {
     vector<float>       instance_input_float;  // Intermediary attributes vector.
     vector<std::string> instance_input_string; // Used in the get line split.
     int K;  // Amount of Neares Neighbors that vote
-    // vector
+    std::vector<Vote> votes;
 
-    cout << "Please, insert K: ";
-    cin >> K;
+    cout << "Please, insert K: " << endl;
+    getline(cin, user_input);
+    K = stoi(user_input);
 
     // User interaction. Asks for Instances attributes.
     cout << "Please, insert the training base respecting the following rules: \n"
@@ -45,7 +61,7 @@ int main() {
         << "2 17 5        \n"
         << "1 2.2 15.8    \n" << endl;
 
-    getline(cin, user_input);   // Get first user input.
+    getline(cin, user_input);   // Get first user input related to samples.
 
     // While receives input, set them as Instances's attributes.
     while(user_input.size() > 0){
@@ -79,7 +95,7 @@ int main() {
 
     }
 
-    // Instance to be classified input
+    // Instance to be classified - input.
     cout << "\n Now please, insert the instance to be classified. Remember:\n"
         << "* Insert numbers only (they CAN be float) \n"
         << "* Finish insertion by entering <enter> \n"
@@ -108,7 +124,7 @@ int main() {
 
     }
 
-    // Shows samples dissimilarities
+    // Shows samples dissimilarities.
     count = 0;
     for (std::vector<Instance *>::iterator it = samples.begin(); it != samples.end(); ++it){
 
@@ -116,10 +132,10 @@ int main() {
 
     }
 
-    // Order objects by dissimilarity
-    std::sort (samples.begin(), samples.end(), myfunction);
+    // Order objects by dissimilarity.
+    std::sort (samples.begin(), samples.end(), lowDissimilarity);
 
-    // Shows samples ordered by dissimilarities
+    // Shows samples ordered by dissimilarities.
     count = 0;
     for (std::vector<Instance *>::iterator it = samples.begin(); it != samples.end(); ++it){
 
@@ -127,12 +143,28 @@ int main() {
 
     }
 
-    // Count vote of K neares neighbors
-    for(int i = 1; i != K; i++) {
+    // Count vote of K-Nearest Neighbors.
+    for(int i = 0; i != K; i++) {
+        // Looks for same kind of vote (same class/category)
+        std::vector<Vote>::iterator it;
+        it = std::find_if(votes.begin(), votes.end(), std::bind(categoryComparison,  std::placeholders::_1 , samples[i]->getCategory()) );
+        if(it != votes.end()){  //Class found.
 
-        // samples[i-1]
+            (*it).amount++;    // Increase vote amount.
+
+        }
+        else{ // Class not found.
+
+            Vote newVote;
+            newVote.category = samples[i]->getCategory();
+            newVote.amount = 1;
+            votes.push_back(newVote); // Add new type of Vote.
+
+        }
 
     }
+
+    for_each (votes.begin(), votes.end(), showVote);
 
 
     // classify new object
