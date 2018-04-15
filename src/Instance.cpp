@@ -43,13 +43,13 @@ void Instance::showAttributes(){
 *** Improvement: compare attribute amounts and choose the lowest
 ***
 */
-void Instance::calculateSimilarityByEuclidianDistance(std::vector<float> new_instance_attributes){
+void Instance::calculateDissimilarityByEuclidianDistance(std::vector<float> new_instance_attributes){
 
     float squaresSum = 0; // Summation variable.
 
     // Summation process.
     for(std::vector<int>::size_type i = 0; i != new_instance_attributes.size(); i++) {
-        squaresSum += pow(new_instance_attributes.at(i), 2) + pow(attributes.at(i) , 2);
+        squaresSum += pow(new_instance_attributes.at(i) - attributes.at(i), 2);
 
     }
 

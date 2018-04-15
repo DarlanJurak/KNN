@@ -26,7 +26,7 @@ public:
     int getCategory(){return category;};
     float getSimilarity(){return dissimilarity;};
     void showAttributes();
-    void calculateSimilarityByEuclidianDistance(std::vector<float>);
+    void calculateDissimilarityByEuclidianDistance(std::vector<float>);
     ~Instance();
 
 protected:

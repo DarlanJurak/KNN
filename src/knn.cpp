@@ -85,7 +85,7 @@ int main() {
     // calculates Dissimilarity
     for (std::vector<Instance *>::iterator it = samples.begin(); it != samples.end(); ++it){
 
-        (*it)->calculateSimilarityByEuclidianDistance((*(new_instances.begin()))->attributes);
+        (*it)->calculateDissimilarityByEuclidianDistance((*(new_instances.begin()))->attributes);
 
     }
 
