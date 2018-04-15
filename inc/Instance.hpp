@@ -15,7 +15,7 @@ class Instance {
 private:
 
     int category;
-    float similarity;       // Similarity (proximity) between this sample and the new instance to be classified.
+    float dissimilarity;       // Dissimilarity (distance) between this sample and the new instance to be classified.
 
 public:
 
@@ -24,7 +24,7 @@ public:
     Instance();
     Instance(int, std::vector<float>);
     int getCategory(){return category;};
-    float getSimilarity(){return similarity;};
+    float getSimilarity(){return dissimilarity;};
     void showAttributes();
     void calculateSimilarityByEuclidianDistance(std::vector<float>);
     ~Instance();

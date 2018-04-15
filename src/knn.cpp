@@ -8,8 +8,8 @@ using namespace std;
 
 int main() {
 
-    vector<Instance *> samples;           // Data structure to store samples.
-    vector<Instance *> new_instances;     // Data structure to store new instances.
+    vector<Instance *> samples;         // Data structure to store samples.
+    vector<Instance *> new_instances;   // Data structure to store new instances that are going to be classified.
     string user_input;                  // Variable to interact with user.
     vector<float>       instance_input_float;  // Intermediary attributes vector.
     vector<std::string> instance_input_string; // Used in the get line split.
@@ -53,54 +53,52 @@ int main() {
     int count = 0;  // Counter to help user. (Helps to see the ordered list of samples).
     for (std::vector<Instance *>::iterator it = samples.begin(); it != samples.end(); ++it){
 
-        std::cout << "Instance " <<  count++ << ": "
+        std::cout << "Sample " <<  count++ << ": "
             << "class: " << (*it)->getCategory() << " "
             << "attributes: ";
         (*it)->showAttributes();
 
     }
 
+    // Instance to be classified input
+    cout << "\n Now please, insert the instance to be classified. Remember:\n"
+        << "* Insert numbers only (they CAN be float) \n"
+        << "* Finish insertion by entering <enter> \n"
+        << "Example:   \n"
+        << "1.2 3.6      \n" << endl;
 
-    // // Instance to be classified input
-    // cout << "\n Now please, insert the instance to be classified. Remember:\n"
-    //     << "* Insert numbers only (they CAN be float) \n"
-    //     << "* Finish insertion by entering <enter> \n"
-    //     << "Example:   \n"
-    //     << "1.2 3.6      \n" << endl;
-    //
-    // getline(cin, user_input);   // Get user input. (Idealy the new object's attributes).
-    //
-    // // Splits input string by <space>.
-    // boost::split(instance_input_string, user_input, [](char c){return c == ' ';});
+    getline(cin, user_input);   // Get user input. (Idealy the new object's attributes).
 
-    // // Transforms from string vector to float vector.
-    // transform(instance_input_string.begin(), instance_input_string.end(), instance_input_float.begin(), [](const std::string& val)
-    // {
-    //     return std::stof(val);
-    // });
-    //
-    // std::cout << "\n\nDEBUG 1 \n\n\n" << '\n';
-    //
-    // // Creates new Instance instance with class and attributes.
-    // new_instances.push_back(new Instance(NULL, instance_input_float));  // Creates new sample.
-    //
-    // // calculates Similarity
-    // for (std::vector<Instance *>::iterator it = samples.begin(); it != samples.end(); ++it){
-    //
-    //     (*it)->calculateSimilarityByEuclidianDistance((*(new_instances.begin()))->attributes);
-    //
-    // }
-    //
-    // count = 0;
-    // for (std::vector<Instance *>::iterator it = samples.begin(); it != samples.end(); ++it){
-    //
-    //     std::cout << "Instance " << count++ << ". Similarity: " << (*it)->getSimilarity() << "." << endl;
-    //
-    // }
+    // Splits input string by <space>.
+    boost::split(instance_input_string, user_input, [](char c){return c == ' ';});
+
+    // Transforms from string vector to float vector.
+    instance_input_float.resize(instance_input_string.size());
+    transform(instance_input_string.begin(), instance_input_string.end(), instance_input_float.begin(), [](const std::string& val)
+    {
+        return std::stof(val);
+    });
+
+    // Creates new Instance instance with attributes.
+    new_instances.push_back(new Instance(NULL, instance_input_float));  // Creates new sample.
+
+    // calculates Dissimilarity
+    for (std::vector<Instance *>::iterator it = samples.begin(); it != samples.end(); ++it){
+
+        (*it)->calculateSimilarityByEuclidianDistance((*(new_instances.begin()))->attributes);
+
+    }
+
+    count = 0;
+    for (std::vector<Instance *>::iterator it = samples.begin(); it != samples.end(); ++it){
+
+        std::cout << "Instance " << count++ << ". Dissimilarity: " << (*it)->getSimilarity() << "." << endl;
+
+    }
 
 
 
-    // Order objects by similarity
+    // Order objects by dissimilarity
     // Count vote of K neares neighbors
     // classify new object
 

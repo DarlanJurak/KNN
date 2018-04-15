@@ -13,7 +13,7 @@
 Instance::Instance(){}
 
 /**
-*** Creates sample with category and attributes
+*** Creates instance with category and attributes
 ***
 */
 Instance::Instance(int c, std::vector<float> v){
@@ -53,7 +53,7 @@ void Instance::calculateSimilarityByEuclidianDistance(std::vector<float> new_ins
 
     }
 
-    similarity = squaresSum;
+    dissimilarity = squaresSum;
 
 }
 
