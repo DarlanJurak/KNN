@@ -4,8 +4,6 @@ RM	=	rm -f
 
 CXXFLAGS	=	-std=c++11
 
-
-
 #Generates KNN exectuble file unifying class and main function object codes
 knn: knn.o Instance.o
 	$(CXX) knn.o Instance.o -o knn
