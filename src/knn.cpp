@@ -8,9 +8,10 @@ using namespace std;
 
 int main() {
 
-    vector<Sample *> samples;   // Data structure to store samples.
-    string user_input;          // Variable to interact with user.
-    vector<float> instance_input_float;  // Intermediary attributes vector.
+    vector<Sample *> samples;           // Data structure to store samples.
+    vector<Sample *> new_instances;     // Data structure to store samples.
+    string user_input;                  // Variable to interact with user.
+    vector<float> instance_input_float;         // Intermediary attributes vector.
     vector<std::string> instance_input_string; // Used in the get line split.
 
     // User interaction. Asks for Samples attributes.
@@ -62,15 +63,47 @@ int main() {
     // Instance to be classified input
     cout << "\n Now please, insert the instance to be classified. Remember:\n"
         << "* Insert numbers only (they CAN be float) \n"
-        << "* The first number in a line represents a class \n"
         << "* Finish insertion by entering <enter> \n"
         << "Example:   \n"
-        << "2 3.6      \n" << endl;
+        << "1.2 3.6      \n" << endl;
 
     getline(cin, user_input);   // Get user input. (Idealy the new object's attributes).
 
     // Splits input string by <space>.
     boost::split(instance_input_string, user_input, [](char c){return c == ' ';});
+
+    // // Transforms from string vector to float vector.
+    // transform(instance_input_string.begin(), instance_input_string.end(), instance_input_float.begin(), [](const std::string& val)
+    // {
+    //     return std::stof(val);
+    // });
+    //
+    // std::cout << "\n\nDEBUG 1 \n\n\n" << '\n';
+    //
+    // // Creates new Sample instance with class and attributes.
+    // new_instances.push_back(new Sample(NULL, instance_input_float));  // Creates new sample.
+    //
+    // // calculates Similarity
+    // for (std::vector<Sample *>::iterator it = samples.begin(); it != samples.end(); ++it){
+    //
+    //     (*it)->calculateSimilarityByEuclidianDistance((*(new_instances.begin()))->attributes);
+    //
+    // }
+    //
+    // count = 0;
+    // for (std::vector<Sample *>::iterator it = samples.begin(); it != samples.end(); ++it){
+    //
+    //     std::cout << "Sample " << count++ << ". Similarity: " << (*it)->getSimilarity() << "." << endl;
+    //
+    // }
+
+
+
+    // Order objects by similarity
+    // Count vote of K neares neighbors
+    // classify new object
+
+
 
     return 0;
 }

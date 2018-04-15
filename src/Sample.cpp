@@ -49,7 +49,7 @@ void Sample::calculateSimilarityByEuclidianDistance(std::vector<float> new_insta
 
     // Summation process.
     for(std::vector<int>::size_type i = 0; i != new_instance_attributes.size(); i++) {
-        squaresSum += pow(new_instance_attributes.at(i), 2) + pow(attributes.at(i) , 2), 2);
+        squaresSum += pow(new_instance_attributes.at(i), 2) + pow(attributes.at(i) , 2);
 
     }
 
