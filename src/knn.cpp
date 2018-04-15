@@ -79,9 +79,9 @@ int main() {
         << "* Insert lines separated by <enter> \n"
         << "* Finish insertion by entering <enter> \n"
         << "Example:    \n"
-        << "1 2 3.6       \n"
-        << "2 17 5        \n"
-        << "1 2.2 15.8    \n" << endl;
+        << "1 2 3.6     \n"
+        << "2 17 5      \n"
+        << "1 2.2 15.8  \n" << endl;
 
     getline(cin, user_input);   // Get first user input related to samples.
 

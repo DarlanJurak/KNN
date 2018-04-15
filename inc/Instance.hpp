@@ -15,7 +15,7 @@ class Instance {
 private:
 
     int category;
-    float dissimilarity;       // Dissimilarity (distance) between this sample and the new instance to be classified.
+    float dissimilarity;    // Dissimilarity (distance) between this sample and the new instance to be classified.
 
 public:
 
@@ -32,6 +32,5 @@ public:
 protected:
 
 };
-
 
 #endif /* Instance_hpp */
