@@ -25,7 +25,7 @@ Instance::Instance(int c, std::vector<float> v){
 
 /**
 *** Print attributes using cout
-***#include <math.h>
+***
 */
 void Instance::showAttributes(){
 
