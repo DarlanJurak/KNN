@@ -24,7 +24,7 @@ public:
     Instance();
     Instance(int, std::vector<float>);
     int getCategory(){return category;};
-    float getSimilarity(){return dissimilarity;};
+    float getDissimilarity(){return dissimilarity;};
     void showAttributes();
     void calculateDissimilarityByEuclidianDistance(std::vector<float>);
     ~Instance();

@@ -6,6 +6,20 @@
 
 using namespace std;
 
+struct vote{
+
+    int category = -1;
+    int amount = 0;
+
+};
+
+// used to ordenated the samples vector by dissimilarity
+bool myfunction (Instance* inst0, Instance* inst1){
+
+    return (inst0->getDissimilarity() < inst1->getDissimilarity());
+
+}
+
 int main() {
 
     vector<Instance *> samples;         // Data structure to store samples.
@@ -13,6 +27,11 @@ int main() {
     string user_input;                  // Variable to interact with user.
     vector<float>       instance_input_float;  // Intermediary attributes vector.
     vector<std::string> instance_input_string; // Used in the get line split.
+    int K;  // Amount of Neares Neighbors that vote
+    // vector
+
+    cout << "Please, insert K: ";
+    cin >> K;
 
     // User interaction. Asks for Instances attributes.
     cout << "Please, insert the training base respecting the following rules: \n"
@@ -89,17 +108,33 @@ int main() {
 
     }
 
+    // Shows samples dissimilarities
     count = 0;
     for (std::vector<Instance *>::iterator it = samples.begin(); it != samples.end(); ++it){
 
-        std::cout << "Instance " << count++ << ". Dissimilarity: " << (*it)->getSimilarity() << "." << endl;
+        std::cout << "Sample " << count++ << ". Dissimilarity: " << (*it)->getDissimilarity() << "." << endl;
+
+    }
+
+    // Order objects by dissimilarity
+    std::sort (samples.begin(), samples.end(), myfunction);
+
+    // Shows samples ordered by dissimilarities
+    count = 0;
+    for (std::vector<Instance *>::iterator it = samples.begin(); it != samples.end(); ++it){
+
+        std::cout << "Sample " << count++ << ". Dissimilarity: " << (*it)->getDissimilarity() << "." << endl;
+
+    }
+
+    // Count vote of K neares neighbors
+    for(int i = 1; i != K; i++) {
+
+        // samples[i-1]
 
     }
 
 
-
-    // Order objects by dissimilarity
-    // Count vote of K neares neighbors
     // classify new object
 
 
