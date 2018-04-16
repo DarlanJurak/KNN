@@ -8,4 +8,4 @@ Execution: runs "./knn.exe" on terminal.
 
 During execution follow strictly the rules presented.
 
-Its possible to copy the samples from Gafanhoto_Esperanca_Samples file and paste them during execution - in the "Samples Insertion moment".
+Its possible to copy the samples from Gafanhoto_Esperanca_Samples file and paste them during execution - in the "Samples Insertion" stage.
