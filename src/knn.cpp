@@ -29,11 +29,13 @@ struct Vote{
 // Used to ordenated the samples vector by dissimilarity. (Ascend).
 bool lowDissimilarity (Instance* inst0, Instance* inst1){
 
-    return (inst0->getDissimilarity() < inst1->getDissimilarity());
-
+    if (inst0->getDissimilarity() < inst1->getDissimilarity())
+        return true;
+    else
+        return false;
 }
 
-// Comparison between a vote category and a sample category.
+// Comparison between a vote clss and a sample class.
 bool categoryComparison(Vote v, int cat)
 {
 	if(v.category == cat)
